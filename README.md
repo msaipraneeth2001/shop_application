@@ -1,5 +1,5 @@
  ## Getting Started
-A Meal application developed using Flutter.
+A Shop application developed using Flutter.
 
  **Prerequisites**
 
