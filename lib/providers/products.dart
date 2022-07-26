@@ -40,12 +40,7 @@ class Products with ChangeNotifier {
     ),
   ];
 
-  // bool _showFavoritesOnly = false;
-
   List<Product> get items {
-    // if (_showFavoritesOnly) {
-    //   return _items.where((thisone) => thisone.isFavorite).toList();
-    // }
     return [..._items];
   }
 
@@ -57,14 +52,6 @@ class Products with ChangeNotifier {
     return _items.firstWhere((thisone) => thisone.id == id);
   }
 
-  // void showFavoritesOnly(){
-  //   _showFavoritesOnly = true;
-  //   notifyListeners();
-  // }
-  // void showAll(){
-  //   _showFavoritesOnly = false;
-  //   notifyListeners();
-  // }
   Future<void> fetchAndSetProducts() async {
     final url = Uri.parse(
         'https://flutter-update-8e51c-default-rtdb.firebaseio.com/products.json');
@@ -114,7 +101,7 @@ class Products with ChangeNotifier {
         id: json.decode(response.body)['name'],
       );
       _items.add(newProduct);
-      // _items.insert(0, newProduct); // at the start of the list
+
       notifyListeners();
     } catch (error) {
       print(error);
@@ -157,33 +144,3 @@ class Products with ChangeNotifier {
     existingProduct = null;
   }
 }
-
-//   void addProduct(Product product) {
-//     final Product newProduct = Product(
-//       id: DateTime.now().toString(),
-//       title: product.title,
-//       description: product.description,
-//       price: product.price,
-//       imageUrl: product.imageUrl,
-//     );
-
-//     _items.insert(0, newProduct);
-//     notifyListeners();
-//   }
-
-//   void updateProduct(String id , Product newProduct){
-//     final prodIndex = _items.indexWhere((thisone) => thisone.id == id);
-//     if(prodIndex >= 0){
-//       _items[prodIndex] = newProduct;
-//       notifyListeners();
-//     }else{
-//       print('not have id..... products provider model');
-//     }
-//   }
-
-//   void deleteProduct(String id){
-//     _items.removeWhere((thisone) => thisone.id == id);
-//     notifyListeners();
-//   }
-
-// }
